@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: simple-jpa
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database: postgresql
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/appdb
+    username: appuser
+    password: passw
+
