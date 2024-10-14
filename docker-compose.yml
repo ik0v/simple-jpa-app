@@ -6,5 +6,5 @@ services:
       - '5432:5432'
     environment:
       - POSTGRES_DB=appdb
-      - POSGRES_USER=appuser
+      - POSTGRES_USER=appuser
       - POSTGRES_PASSWORD=passw

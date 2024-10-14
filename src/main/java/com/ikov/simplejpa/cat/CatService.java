@@ -1,15 +1,20 @@
-package com.ikov.simplejpa;
+package com.ikov.simplejpa.cat;
 
+import com.ikov.simplejpa.owner.Owner;
+import com.ikov.simplejpa.owner.OwnerRepo;
+import com.ikov.simplejpa.owner.OwnerService;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class CatService {
 
-    CatRepo catRepo;
+    private final CatRepo catRepo;
+    private final OwnerService ownerService;
 
-    public CatService(CatRepo catRepo) {
+    public CatService(CatRepo catRepo, OwnerRepo ownerRepo, OwnerService ownerService) {
         this.catRepo = catRepo;
+        this.ownerService = ownerService;
     }
 
     public List<Cat> getCats() {
@@ -23,6 +28,11 @@ public class CatService {
     public Cat addCat(Cat cat) {
         return catRepo.save(cat);
     }
+
+//    public Cat addCat(CatDto catDto) {
+//        Owner owner = ownerService.getOwnerById()
+//        return catRepo.save(cat);
+//    }
 
     public void deleteCat(long id) {
         catRepo.deleteById(id);

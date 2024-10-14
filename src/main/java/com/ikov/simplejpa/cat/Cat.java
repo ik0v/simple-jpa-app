@@ -1,5 +1,8 @@
-package com.ikov.simplejpa;
+package com.ikov.simplejpa.cat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ikov.simplejpa.owner.Owner;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +15,7 @@ public class Cat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
     private String breed;
     private int age;
@@ -24,5 +27,7 @@ public class Cat {
     }
 
     @ManyToOne
+    @JoinColumn(name = "owner_id")
+    @JsonIgnoreProperties("cats")
     private Owner owner;
 }
