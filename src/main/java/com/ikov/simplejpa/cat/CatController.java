@@ -23,6 +23,13 @@ public class CatController {
         return new ResponseEntity<>(cats, HttpStatus.OK);
     }
 
+    @GetMapping("age/{age}")
+    public ResponseEntity<List<Cat>> getCatsBelowAge(@PathVariable int age) {
+        List<Cat> cats = catService.getCatsBelowAge(age);
+//        return ResponseEntity.ok(cats);
+        return new ResponseEntity<>(cats, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Cat> getCat(@PathVariable long id) {
         Cat cat = catService.getCatByUd(id);

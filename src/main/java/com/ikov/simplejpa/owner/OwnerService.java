@@ -31,10 +31,11 @@ public class OwnerService {
 
     public Owner updateOwner(long id, Owner updatedOwner) {
         Owner owner = repo.findById(id).orElse(null);
-        if (owner == null) return owner;
+        if (owner == null) return null;
         owner.setFName(updatedOwner.getFName());
         owner.setLName(updatedOwner.getLName());
         owner.setEmail(updatedOwner.getEmail());
+        owner.setCats(updatedOwner.getCats());
         return repo.save(owner);
     }
 }

@@ -21,6 +21,10 @@ public class CatService {
         return catRepo.findAll();
     }
 
+    public List<Cat> getCatsBelowAge(int age) {
+        return catRepo.findCatsByAgeBefore(age);
+    }
+
     public Cat getCatByUd(long id) {
         return catRepo.findById(id).orElse(null);
     }
@@ -40,8 +44,10 @@ public class CatService {
 
     public Cat updateCat(long id, Cat cat) {
         Cat catToUpdate = catRepo.findById(id).orElse(null);
+        if(catToUpdate == null) return null;
         catToUpdate.setName(cat.getName());
         catToUpdate.setAge(cat.getAge());
+        catToUpdate.setOwner(cat.getOwner());
         return catRepo.save(cat);
     }
 

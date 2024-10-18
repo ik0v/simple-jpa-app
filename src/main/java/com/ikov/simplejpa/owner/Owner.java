@@ -3,6 +3,7 @@ package com.ikov.simplejpa.owner;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ikov.simplejpa.cat.Cat;
+import com.ikov.simplejpa.cat.profile.Profile;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,5 +32,9 @@ public class Owner {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("owner")
     private Set<Cat> cats;
+
+    @OneToOne(mappedBy = "owner")
+    @JsonIgnoreProperties("owner")
+    private Profile profile;
 
 }
