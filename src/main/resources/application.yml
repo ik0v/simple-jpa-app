@@ -4,8 +4,13 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     database: postgresql
+    show-sql: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
 
   datasource:
     driver-class-name: org.postgresql.Driver

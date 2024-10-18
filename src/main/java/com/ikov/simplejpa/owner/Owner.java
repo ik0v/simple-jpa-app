@@ -16,8 +16,11 @@ import java.util.Set;
 @NoArgsConstructor
 public class Owner {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "owner_gen")
+    @SequenceGenerator(name = "owner_gen", sequenceName = "owner_seq", allocationSize = 1)
+    @Column(name = "owner_id")
     private Long id;
+    @Column(name = "owner_first_name")
     private String fName;
 
     public Owner(String fName, String lName, String email) {
@@ -26,7 +29,9 @@ public class Owner {
         this.email = email;
     }
 
+    @Column(name = "owner_last_name")
     private String lName;
+    @Column(name = "owner_email")
     private String email;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)

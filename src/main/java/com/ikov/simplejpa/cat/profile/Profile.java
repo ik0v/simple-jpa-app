@@ -12,13 +12,17 @@ import lombok.Setter;
 public class Profile {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "profile_gen")
+    @SequenceGenerator(name = "profile_gen", sequenceName = "profile_seq",  allocationSize = 1)  // default allocationSize = 51
+    @Column(name = "profile_id")
     private Long id;
+    @Column(name = "profile_language")
     private String language;
+    @Column(name = "profile_timezone")
     private String tomeZone;
 
     @OneToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "profile_owner_id")
     @JsonIgnoreProperties("profile")
     private Owner owner;
 

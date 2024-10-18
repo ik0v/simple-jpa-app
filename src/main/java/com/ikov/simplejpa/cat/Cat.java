@@ -14,10 +14,15 @@ import lombok.Setter;
 public class Cat {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "cat_gen")
+    @SequenceGenerator(name = "cat_gen", sequenceName = "cat_seq", allocationSize = 1)
+    @Column(name = "cat_id")
     private Long id;
+    @Column(name = "cat_name")
     private String name;
+    @Column(name = "cat_breed")
     private String breed;
+    @Column(name = "cat_age")
     private int age;
 
     public Cat(String name, String breed, int age) {
@@ -27,7 +32,7 @@ public class Cat {
     }
 
     @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "cat_owner_id")
     @JsonIgnoreProperties("cats")
     private Owner owner;
 }
